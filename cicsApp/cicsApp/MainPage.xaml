@@ -7,7 +7,12 @@
     <StackLayout Margin="20,35,20,20">
         <Button Text="Get Repository Data"
                 Clicked="OnButtonClicked" />
-        <ListView x:Name="collectionView"  ItemsSource="{Binding repositories}" SelectedItem="{Binding selectedname}">
+        <Entry x:Name="txtTo" Placeholder="someone@example.com"></Entry>
+        <!--<Entry x:Name="txtSubject" Placeholder="Subject"></Entry>
+        <Editor x:Name="txtBody" HeightRequest="50" ></Editor>-->
+        <Button x:Name="btnSend" Text="Send Mail" Clicked="btnSend_Clicked" />
+        
+        <ListView x:Name="collectionView" RowHeight="50" ItemsSource="{Binding repositories}" SelectedItem="{Binding selectedname}">
             <!--<ListView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout>
@@ -32,11 +37,20 @@
             </ListView.ItemTemplate>-->
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <!--<StackLayout>-->
-                    <!--<TextCell  Text="{Binding Name}" />-->
-                    <TextCell  Text="{Binding Description}" />
-                    <!--<TextCell  Text="{Binding GitHubHomeUrl}" />-->
-                    <!--</StackLayout>-->
+                    <ViewCell>
+                        <Grid>
+                            <!--<Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.3*" />
+                                <ColumnDefinition Width="0.3*" />
+                                <ColumnDefinition Width="0.3*" />
+                            </Grid.ColumnDefinitions>-->
+                            <StackLayout>
+                            <Label   Text="{Binding Name}"/>
+                            <Label  Grid.Column="1" Text="{Binding Description}" />
+                            <Label  Grid.Column="2" Text="{Binding GitHubHomeUrl}" HorizontalTextAlignment="End"/>
+                    </StackLayout>
+                        </Grid>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
